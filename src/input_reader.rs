@@ -1,5 +1,3 @@
-
-
 use std::io;
 
 pub fn read_user_input() -> String {
