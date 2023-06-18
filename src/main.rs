@@ -14,9 +14,9 @@ fn main() {
         println!("{}", user_input);
 
         // process users input by matching to a known command
-        match user_input {
-            Commands::HELP => println!("You need help");
-            _ => {}
+        match Commands::get_command(&user_input) {
+            "help" => println!("You need help"),
+            _ => println!("I'm not sure what you mean by {}.", user_input)
         }
 
         break;
