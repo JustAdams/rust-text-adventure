@@ -1,4 +1,4 @@
-use std::process;
+use std::{process, io::{stdout, Write}};
 
 use crate::Commands::Action;
 
@@ -11,6 +11,8 @@ fn main() {
     let mut play_game = true;
 
     while play_game {
+        print!("> ");
+        stdout().flush();
         // get user input
         let user_input = input_reader::read_user_input();
 
