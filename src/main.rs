@@ -1,4 +1,4 @@
-use std::process;
+use std::{process, io::{stdout, Write}};
 
 mod interaction {
     pub mod input_reader;
@@ -22,6 +22,8 @@ fn main() {
     };
 
     while play_game {
+        print!("> ");
+        stdout().flush();
         // get user input
         let user_input = interaction::input_reader::read_user_input();
 
