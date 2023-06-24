@@ -22,8 +22,7 @@ fn main() {
     };
 
     while play_game {
-        print!("> ");
-        stdout().flush();
+
         // get user input
         let user_input = interaction::input_reader::read_user_input();
 
@@ -32,7 +31,6 @@ fn main() {
             Action::HELP => println!("You need help"),
             Action::MOVE => println!("You move"),
             Action::LOOK => sample_room.get_description(),
-            //Action::LOOK => current_room::get_description(),
             Action::QUIT => { play_game = false },
             _ => println!("I'm not sure what you mean by {}", user_input)
         }
