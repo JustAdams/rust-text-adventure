@@ -1,25 +1,24 @@
-use std::{process, io::{stdout, Write}};
+use std::{process};
 
 mod interaction {
     pub mod input_reader;
     pub mod commands;
 }
 
+mod game_manager;
+
 mod world {
     pub mod room;
 }
 
-use crate::{world::room::Room, interaction::commands::{Action, self}};
+use crate::{interaction::commands::{Action, self}, game_manager::GameManager};
 
 fn main() {
     println!("Starting game...");
     
     let mut play_game = true;
 
-    let sample_room = Room {
-        name: String::from("Sample Room"),
-        description: String::from("This is the description for the sample room.")
-    };
+    let gm = GameManager::new();
 
     while play_game {
 
@@ -30,7 +29,7 @@ fn main() {
         match commands::get_command(&user_input) {
             Action::HELP => println!("You need help"),
             Action::MOVE => println!("You move"),
-            Action::LOOK => sample_room.get_description(),
+            Action::LOOK => gm.get_current_room().get_description(),
             Action::QUIT => { play_game = false },
             _ => println!("I'm not sure what you mean by {}", user_input)
         }
