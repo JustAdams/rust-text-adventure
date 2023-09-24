@@ -1,28 +1,40 @@
-use std::{process, io::{stdout, Write}};
+use std::{
+    collections::HashMap,
+    io::{stdout, Write},
+    process,
+};
 
 mod interaction {
-    pub mod input_reader;
     pub mod commands;
+    pub mod input_reader;
 }
 
 mod world {
     pub mod room;
 }
 
-use crate::{world::room::Room, interaction::commands::{Action, self}};
+use crate::{
+    interaction::commands::{self, Action, Direction},
+    world::room::Room,
+};
 
 fn main() {
     println!("Starting game...");
-    
+
     let mut play_game = true;
 
-    let sample_room = Room {
-        name: String::from("Sample Room"),
-        description: String::from("This is the description for the sample room.")
-    };
+    // TODO: move these into a room builder
+    let second_room = Room::new(
+        String::from("The Second Room"),
+        String::from("This looks like the second room. The world's a lot bigger than you thought!"),
+    );
+
+    let sample_room = Room::new(
+        String::from("Sample Room"),
+        String::from("This is the description for the sample room."),
+    );
 
     while play_game {
-
         // get user input
         let user_input = interaction::input_reader::read_user_input();
 
@@ -31,11 +43,11 @@ fn main() {
             Action::HELP => println!("You need help"),
             Action::MOVE => println!("You move"),
             Action::LOOK => sample_room.get_description(),
-            Action::QUIT => { play_game = false },
-            _ => println!("I'm not sure what you mean by {}", user_input)
+            Action::QUIT => play_game = false,
+            _ => println!("I'm not sure what you mean by {}", user_input),
         }
     }
-    
+
     quit_game();
 }
 
