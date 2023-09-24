@@ -1,8 +1,4 @@
-use std::{
-    collections::HashMap,
-    io::{stdout, Write},
-    process,
-};
+use std::process;
 
 mod interaction {
     pub mod commands;
@@ -14,7 +10,7 @@ mod world {
 }
 
 use crate::{
-    interaction::commands::{self, Action, Direction},
+    interaction::commands::{self, Action},
     world::room::Room,
 };
 
