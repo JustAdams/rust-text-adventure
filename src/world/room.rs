@@ -22,7 +22,7 @@ impl Room {
         println!("{}", self.description);
         // display the exists and where they go for the room
         for (direction, room) in &self.exits {
-            println!("You can go {:#?} to {:#?}", "direction", room.name);
+            println!("You can go {:#?} to {:#?}", direction, room.name);
         }
     }
 
